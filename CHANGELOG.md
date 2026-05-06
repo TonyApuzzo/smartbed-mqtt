@@ -1,3 +1,9 @@
+## v1.2.0
+
+- Accept most old pending PRs against original repo
+- Bump versions of all dependencies
+- Relabel metadata so it can be distinguished from original when installed
+
 ## v1.1.22
 
 **New Features**
