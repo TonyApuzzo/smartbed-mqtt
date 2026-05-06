@@ -17,7 +17,7 @@ const commandPayload = (command: number) => {
 };
 
 export class Controller extends EventEmitter implements IController<number> {
-  cache: Dictionary<Object> = {};
+  cache: Dictionary<object> = {};
   private timer?: Timer;
   private lastCommands?: number[];
 

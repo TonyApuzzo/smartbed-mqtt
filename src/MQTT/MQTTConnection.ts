@@ -18,7 +18,7 @@ export class MQTTConnection extends EventEmitter implements IMQTTConnection {
       logInfo('[MQTT] Reconnecting...');
     });
 
-    client.on('disconnect', client.removeAllListeners);
+    client.on('disconnect', () => client.removeAllListeners());
 
     client.on('error', (error) => {
       logError('[MQTT] Error', error);

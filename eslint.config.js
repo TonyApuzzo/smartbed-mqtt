@@ -21,6 +21,7 @@ export default tseslint.config(
     rules: {
       'no-unneeded-ternary': 'warn',
       '@typescript-eslint/no-floating-promises': ['warn', { ignoreIIFE: true }],
+      '@typescript-eslint/no-unused-expressions': ['error', { allowShortCircuit: true, allowTernary: true }],
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       'no-empty': [
