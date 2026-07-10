@@ -1,6 +1,10 @@
-# Smart Bed MQTT
+# Smart Bed MQTT TAF (Tony Apuzzo Fork)
 
 This project aims to enable remote control of adjustable smart beds from HomeAssistant.
+
+Since the original author, Richard Hopton, hasn't released an update for over a year, I am publishing this fork to incorporate many/most pull requests logged against the original repository. I also updated dependencies and APIs to work with the latest HA and ESPHome as of July 2026.
+
+NOTE: I ran the local unit tests and tested with my physical MotoSleep bed, but do not have other bed types to test "in the wild".
 
 ## Support is for:
 

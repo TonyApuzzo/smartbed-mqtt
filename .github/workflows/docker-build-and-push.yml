@@ -1,7 +1,7 @@
 ---
 name: Docker build and push
 concurrency:
-  group: "${{ github.workflow }}-${{ github.ref }}"
+  group: '${{ github.workflow }}-${{ github.ref }}'
   cancel-in-progress: true
 on:
   push:
@@ -10,7 +10,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: richardhopton/smartbed-mqtt
+  IMAGE_NAME: TonyApuzzo/smartbed-mqtt
 
 jobs:
   build-and-push-image:
