@@ -1,4 +1,4 @@
-import { logError, logInfo } from '@utils/logger';
+import { logError, logInfo, logWarn } from '@utils/logger';
 import EventEmitter from 'events';
 import { MqttClient } from 'mqtt';
 import { IMQTTConnection } from './IMQTTConnection';
@@ -18,7 +18,9 @@ export class MQTTConnection extends EventEmitter implements IMQTTConnection {
       logInfo('[MQTT] Reconnecting...');
     });
 
-    client.on('disconnect', () => client.removeAllListeners());
+    // Don't remove listeners here: mqtt.js reconnects automatically, and losing the 'error'
+    // listener would turn the next socket error into an uncaught exception.
+    client.on('disconnect', () => logWarn('[MQTT] Disconnected by broker'));
 
     client.on('error', (error) => {
       logError('[MQTT] Error', error);

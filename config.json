@@ -1,6 +1,6 @@
 {
   "name": "Smartbed MQTT",
-  "version": "1.2.0",
+  "version": "1.2.2",
   "slug": "smartbed-mqtt",
   "description": "A Home Assistant add-on to enable controlling smart beds.",
   "url": "https://github.com/TonyApuzzo/smartbed-mqtt",

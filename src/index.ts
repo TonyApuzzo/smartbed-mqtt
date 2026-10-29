@@ -25,10 +25,9 @@ const processExit = (exitCode: number = 0) => {
   process.exit(exitCode);
 };
 
-process.on('exit', () => {
-  logWarn('Shutting down Smartbed-MQTT...');
-  processExit(0);
-});
+// Don't call process.exit() here: it would override the real exit code with 0,
+// which stops the Home Assistant watchdog from restarting the add-on after a crash.
+process.on('exit', () => logWarn('Shutting down Smartbed-MQTT...'));
 process.on('SIGINT', () => processExit(0));
 process.on('SIGTERM', () => processExit(0));
 process.on('uncaughtException', (err) => {
@@ -77,4 +76,7 @@ const start = async () => {
       return void (await scanner(esphome));
   }
 };
-void start();
+start().catch((err) => {
+  logError(err);
+  processExit(1);
+});

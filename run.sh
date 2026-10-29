@@ -58,4 +58,4 @@ else
     echo "Using configured MQTT password: <hidden>"
 fi
 
-node index.js
+exec node index.js

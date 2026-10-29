@@ -1,3 +1,14 @@
+## v1.2.2
+
+**Bug Fixes**
+
+- (ESPHome) Keep an error listener on BLE proxy connections so transient socket errors (e.g. `ECONNRESET`) no longer crash the add-on; the connection now reconnects automatically
+- (ESPHome) Log BLE proxy disconnects and reconnects
+- (BLE) Catch failures when reconnecting to or auto-disconnecting from a device while the proxy is unavailable
+- (MQTT) Stop removing all client listeners when the broker sends a disconnect
+- (Common) Exit with a non-zero code on fatal errors so the Home Assistant watchdog can restart the add-on
+- (Common) Run node via `exec` so it receives stop signals from Home Assistant
+
 ## v1.2.1
 - Update package versions per `yarn audit`
 

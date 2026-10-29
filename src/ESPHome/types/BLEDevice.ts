@@ -3,7 +3,7 @@ import { Dictionary } from '@utils/Dictionary';
 import { BLEAdvertisement } from './BLEAdvertisement';
 import { BLEDeviceInfo } from './BLEDeviceInfo';
 import { IBLEDevice } from './IBLEDevice';
-import { logInfo } from '@utils/logger';
+import { logInfo, logWarn } from '@utils/logger';
 
 export class BLEDevice implements IBLEDevice {
   private connected = false;
@@ -29,7 +29,7 @@ export class BLEDevice implements IBLEDevice {
     this.mac = this.address.toString(16).padStart(12, '0');
     this.connection.on('message.BluetoothDeviceConnectionResponse', ({ address, connected }) => {
       if (this.address !== address || this.connected === connected) return;
-      void this.connect();
+      this.connect().catch((e) => logWarn('[BLE] Failed to reconnect to device:', this.name, e?.message ?? e));
     });
   }
 

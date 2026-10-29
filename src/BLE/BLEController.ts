@@ -39,7 +39,8 @@ export class BLEController<TCommand> extends EventEmitter implements IEventSourc
     });
   }
 
-  private disconnect = () => this.bleDevice.disconnect();
+  private disconnect = () =>
+    this.bleDevice.disconnect().catch((e) => logError(`[BLE] Failed to disconnect`, e?.message ?? e));
 
   private write = async (command: number[]) => {
     if (this.disconnectTimeout) {
