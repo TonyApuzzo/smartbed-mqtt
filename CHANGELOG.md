@@ -1,3 +1,6 @@
+## v1.2.1
+- Update package versions per `yarn audit`
+
 ## v1.2.0
 
 - Accept most old pending PRs against original repo

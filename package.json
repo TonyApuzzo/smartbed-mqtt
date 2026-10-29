@@ -1,6 +1,6 @@
 {
   "name": "smartbed-mqtt",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Smartbed MQTT TAF is a Node.js application that connects to a Smartbed and publishes its data to an MQTT broker. It is based on the original Smartbed MQTT Add-On by Richard Hopton.",
   "author": "Tony Apuzzo",
   "repository": "git@github.com:TonyApuzzo/smartbed-mqtt.git",
