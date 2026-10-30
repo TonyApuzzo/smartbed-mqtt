@@ -1,3 +1,10 @@
+## v1.2.3
+
+**Bug Fixes**
+
+- (ESPHome) Re-subscribe to BLE advertisements after a proxy reconnect, without which the proxy never answers device connection requests and all commands time out
+- (Common) Log terminating signal
+
 ## v1.2.2
 
 **Bug Fixes**

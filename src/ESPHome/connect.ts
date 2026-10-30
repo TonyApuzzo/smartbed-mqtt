@@ -16,7 +16,16 @@ export const connect = (connection: Connection) => {
         logWarn('[ESPHome] Connection error:', connection.host, error?.message ?? error)
       );
       connection.on('reconnect', () => logInfo('[ESPHome] Disconnected, will reconnect:', connection.host));
-      connection.on('authorized', () => logInfo('[ESPHome] Reconnected:', connection.host));
+      connection.on('authorized', () => {
+        logInfo('[ESPHome] Reconnected:', connection.host);
+        // The proxy only sends BLE connection responses to a client subscribed to advertisements,
+        // and the subscription is lost with the old session, so re-subscribe on every reconnect.
+        try {
+          connection.subscribeBluetoothAdvertisementService();
+        } catch (e: any) {
+          logWarn('[ESPHome] Failed to resubscribe to BLE advertisements:', connection.host, e?.message ?? e);
+        }
+      });
       // TODO: Fix next two lines after new version of esphome-native-api is released
       const deviceInfo = await connection.deviceInfoService();
       const { bluetoothProxyFeatureFlags } = deviceInfo as any;

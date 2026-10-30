@@ -1,6 +1,6 @@
 import { connectToMQTT } from '@mqtt/connectToMQTT';
 import { loadStrings } from '@utils/getString';
-import { logError, logWarn } from '@utils/logger';
+import { logError, logInfo, logWarn } from '@utils/logger';
 import { getType } from '@utils/options';
 import { connectToESPHome } from 'ESPHome/connectToESPHome';
 import { ergomotion } from 'ErgoMotion/ergomotion';
@@ -28,8 +28,12 @@ const processExit = (exitCode: number = 0) => {
 // Don't call process.exit() here: it would override the real exit code with 0,
 // which stops the Home Assistant watchdog from restarting the add-on after a crash.
 process.on('exit', () => logWarn('Shutting down Smartbed-MQTT...'));
-process.on('SIGINT', () => processExit(0));
-process.on('SIGTERM', () => processExit(0));
+const onSignal = (signal: NodeJS.Signals) => {
+  logInfo(`Received ${signal}`);
+  processExit(0);
+};
+process.on('SIGINT', onSignal);
+process.on('SIGTERM', onSignal);
 process.on('uncaughtException', (err) => {
   logError(err);
   processExit(2);
